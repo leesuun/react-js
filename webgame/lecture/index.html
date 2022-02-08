@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="https://unpkg.com/react@^16/umd/react.production.min.js"></script>
+        <script src="https://unpkg.com/react-dom@16.13.0/umd/react-dom.production.min.js"></script>
+        <script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+        <title>Document</title>
+    </head>
+    <body>
+        <div id="root"></div>
+
+        <script type="text/babel">
+            //클래스 하나가 컴포넌트 하나
+            class LikeButton extends React.Component {
+                constructor(props) {
+                    super(props);
+                    this.state = {
+                        liked: false,
+                    };
+                }
+
+                render() {
+                    return (
+                        <button
+                            type="submit"
+                            onClick={() => {
+                                if (this.state.liked === false) {
+                                    this.setState({ liked: true });
+                                } else {
+                                    this.setState({ liked: false });
+                                }
+                            }}
+                        >
+                            {this.state.liked === true ? "Liked" : "UnLiked"}
+                        </button>
+                    );
+                }
+            }
+        </script>
+        <script type="text/babel">
+            ReactDOM.render(
+                <div>
+                    <LikeButton />
+                    <LikeButton />
+                    <LikeButton />
+                </div>,
+                document.getElementById("root")
+            );
+        </script>
+    </body>
+</html>
