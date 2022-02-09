@@ -39,19 +39,24 @@
                         this.state.first * this.state.second ===
                         parseInt(this.state.value)
                     ) {
-                        this.setState({
-                            result: `${this.state.first} * ${this.state.second}=${
-                                this.state.first * this.state.second
-                            } 정답입니다.`,
-                            first: Math.ceil(Math.random() * 9),
-                            second: Math.ceil(Math.random() * 9),
-                            value: "",
+                        this.setState((prev) => {
+                            return {
+                                result: `${this.state.first} * ${this.state.second}=${prev.value} 정답입니다.`,
+                                first: Math.ceil(Math.random() * 9),
+                                second: Math.ceil(Math.random() * 9),
+                                value: "",
+                            };
                         });
+
+                        this.input.focus();
                     } else {
                         this.setState({ result: "오답입니다.", value: "" });
+                        this.input.focus();
                     }
                 };
 
+                // state가 변경되면  Component는 re rendering 된다.
+                // 렌더링시 이벤트함수는 따로 분리 하는게 좋음( 리렌더링시 함수가 새로 생기면 낭비)
                 render() {
                     return (
                         <React.Fragment>
@@ -60,6 +65,9 @@
                             </div>
                             <form type="submit" onSubmit={this.onSubmit}>
                                 <input
+                                    ref={(c) => {
+                                        this.input = c;
+                                    }}
                                     type="number"
                                     value={this.state.value}
                                     onChange={this.onChange}
