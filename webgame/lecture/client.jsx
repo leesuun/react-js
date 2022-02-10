@@ -3,4 +3,5 @@ import ReactDom from "react-dom";
 import WordRelay from "./WordRelay"
 
 
-ReactDom.render(<WordRelay/>,document.querySelector("#root"))
+
+ReactDom.render(<div><WordRelay /><WordRelay /></div>, document.querySelector("#root"));
