@@ -4,4 +4,4 @@ import WordRelay from "./WordRelay"
 
 
 
-ReactDom.render(<div><WordRelay /><WordRelay /></div>, document.querySelector("#root"));
+ReactDom.render(<div><WordRelay /></div>, document.querySelector("#root"));

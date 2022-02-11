@@ -3,10 +3,9 @@ const webpack = require("webpack");
 
 /* entry, module, plugin, output , other.. 순서로 */
 // entry 파일에 module을 적용하고, 기타기능(plugin)적용하고, output한다.
-// hot reloading 기능은 watch모드랑 달리 test상태 그대로 reload되어 데이터가 안날라감
 
 module.exports = {
-    name: "Wordrelay-settings",
+    name: "gugudan-settings",
     mode: "development",
     devtool: "eval",
     resolve: {
