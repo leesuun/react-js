@@ -1,14 +1,15 @@
-import React, { Component } from "react";
+import React, { PureComponent,memo } from "react";
 
 
 // class 
-// class Try extends Component{
+// class Try extends PureComponent{
 
 //     render() {
+//         const {tryInfo} = this.props
 //         return (
 //             <li>
-//                 <div>{this.props.tryInfo.try}</div>
-//                 <div>{ this.props.tryInfo.result}</div>
+//                 <div>{tryInfo.try}</div>
+//                 <div>{ tryInfo.result}</div>
 //           </li>
             
 //         )
@@ -17,7 +18,7 @@ import React, { Component } from "react";
 
 // hooks
 
-const Try = ({tryInfo}) => {
+const Try = memo(({tryInfo}) => {
          return (
             <li>
                 <div>{tryInfo.try}</div>
@@ -25,7 +26,7 @@ const Try = ({tryInfo}) => {
           </li>
             
         )
-}
+})
 
 
 export default Try;

@@ -19,6 +19,11 @@ const Baseball = () => {
     const [answer, setAnswer] = useState(getNumbers());
     const [tries, setTries] = useState([]);
      
+
+    const Button = React.memo((props) => {
+  // your component
+    });
+
     const resetGame = () => {
         setTimeout(() => {
             alert("게임을 다시 시작합니다.!");
@@ -68,10 +73,11 @@ const Baseball = () => {
     }
         
     return(
+            
         <>
             <h1>{result}</h1>
             <form onSubmit={onSubmitForm}>
-                <input maxLength={4} value={value} onChange={onChangeInput} />
+                <input size={4} maxLength={4} value={value} onChange={onChangeInput} />
             </form>
             <div>시도: {tries.length}</div>
             <ul>
@@ -81,8 +87,9 @@ const Baseball = () => {
                     )
                 }) }
                 
-            </ul>
+                </ul>
         </>
+                
         )
     
 }

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import Try from "./try"
 
 function getNumbers() {
@@ -11,12 +11,12 @@ function getNumbers() {
     return array;
 }
 
-class Baseball extends Component{
+class Baseball extends PureComponent{
     state = {
         result: "",
         value: "",
         answer: getNumbers(),
-        tries: []
+        tries: [] // push 사용 x
     }
 
     resetGame = () => {
@@ -34,6 +34,7 @@ class Baseball extends Component{
     onSubmitForm = (e) => {
         e.preventDefault();
         const { value, answer, tries } = this.state;
+        
         if (value === answer.join("")) {
             this.setState({
                 result: "홈런",
@@ -59,8 +60,9 @@ class Baseball extends Component{
                     }
                 }
                 this.setState(prevState => {
+                    console.log(prevState)
                     return {
-                        tries: [...prevState, { try: value, result: ` ${strike} 스트라이크 ${ball} 볼` }],
+                        tries: [...prevState.tries, { try: value, result: ` ${strike} 스트라이크 ${ball} 볼` }],
                         value: ""
 
                     }
@@ -71,7 +73,6 @@ class Baseball extends Component{
     }
 
     onChangeInput = (e) => {
-        console.log(this.state.answer)
         this.setState({
             value: e.target.value,
         })

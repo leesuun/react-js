@@ -5,7 +5,7 @@ import Baseball_hooks from "./baseball-hooks";
 import Baseball_practice from "./baseball-practice";
 
 
-ReactDOM.render(<Baseball_practice/>, document.querySelector("#root"))
+ReactDOM.render(<Baseball_hooks/>, document.querySelector("#root"))
  
 
 
