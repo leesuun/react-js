@@ -1,5 +1,6 @@
 const path = require("path");
 const webpack = require("webpack");
+const RefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
 
 /* entry, module, plugin, output , other.. 순서로 */
 // entry 파일에 module을 적용하고, 기타기능(plugin)적용하고, output한다.
@@ -39,16 +40,22 @@ module.exports = {
                         "@babel/preset-react",
                     ],
                     // 플러그인 확장프로그램
-                    plugins: [],
+                    plugins: ["react-refresh/babel"],
                 },
             },
         ],
     },
 
-    plugins: [new webpack.LoaderOptionsPlugin({ debug: true })],
+    plugins: [new RefreshWebpackPlugin()],
 
     output: {
         path: path.join(__dirname, "./dist"),
-        filename: "app.js",
+        filename: "[name].js",
+        publicPath: "/dist",
+    },
+    devServer: {
+        devMiddleware: { publicPath: "/dist" },
+        static: { directory: path.resolve(__dirname) },
+        hot: true,
     },
 };
