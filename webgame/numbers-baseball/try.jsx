@@ -3,8 +3,7 @@ import React, { PureComponent,memo } from "react";
 
 // class 
 // class Try extends PureComponent{
-
-//     render() {
+//   render() {
 //         const {tryInfo} = this.props
 //         return (
 //             <li>

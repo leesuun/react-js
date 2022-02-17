@@ -1,4 +1,4 @@
-import React, { PureComponent } from "react";
+import React, { createRef, PureComponent,  } from "react";
 import Try from "./try"
 
 function getNumbers() {
@@ -41,6 +41,7 @@ class Baseball extends PureComponent{
                 tries: [...tries, {try: value, result:"홈런"}]
             })
             this.resetGame();
+            this.inputRef.current.focus();
             
         } else {
             const answerArray = value.split("").map((v) => parseInt(v));
@@ -50,7 +51,8 @@ class Baseball extends PureComponent{
                 this.setState({
                     result: `10회 이상 실패! 답은 ${answer.join(",")}입니다`
                 })
-            this.resetGame();
+                this.resetGame();
+                this.inputRef.current.focus();
             } else {
                 for (let i = 0; i < 4; i++){
                     if (answerArray[i] === answer[i]) {
@@ -64,10 +66,10 @@ class Baseball extends PureComponent{
                     return {
                         tries: [...prevState.tries, { try: value, result: ` ${strike} 스트라이크 ${ball} 볼` }],
                         value: ""
-
                     }
                 })
             }
+            this.inputRef.current.focus();
         }
         
     }
@@ -77,13 +79,15 @@ class Baseball extends PureComponent{
             value: e.target.value,
         })
     }
+
+    inputRef = createRef();
     render() {
         const { value, answer, tries, result } = this.state;
         return(
             <>
                 <h1>{result}</h1>
                 <form onSubmit={this.onSubmitForm}>
-                    <input maxLength={4} value={value} onChange={this.onChangeInput} />
+                    <input ref={this.inputRef} maxLength={4} value={value} onChange={this.onChangeInput} />
                 </form>
                 <div>시도: {tries.length}</div>
                 <ul>

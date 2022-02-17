@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { memo, useState,useRef } from "react";
 import Try from "./try"
 
 
@@ -13,16 +13,13 @@ function getNumbers() {
 }
 
 
-const Baseball = () => {
+const Baseball = memo(() => {
     const [result, setResult] = useState("");
     const [value, setValue] = useState("");
     const [answer, setAnswer] = useState(getNumbers());
     const [tries, setTries] = useState([]);
+    const inputRef = useRef(null);
      
-
-    const Button = React.memo((props) => {
-  // your component
-    });
 
     const resetGame = () => {
         setTimeout(() => {
@@ -31,7 +28,8 @@ const Baseball = () => {
             setResult("");
             setAnswer(getNumbers());
             setTries([])
-        },1000)
+        }, 1000)
+        inputRef.current.focus();
     }
 
     const onSubmitForm = (e) => {
@@ -64,6 +62,7 @@ const Baseball = () => {
                 })           
             }
         }
+        inputRef.current.focus();
         
     }
 
@@ -72,12 +71,11 @@ const Baseball = () => {
         setValue(e.target.value)
     }
         
-    return(
-            
+    return( 
         <>
             <h1>{result}</h1>
             <form onSubmit={onSubmitForm}>
-                <input size={4} maxLength={4} value={value} onChange={onChangeInput} />
+                <input ref={inputRef} maxLength={4} value={value} onChange={onChangeInput} />
             </form>
             <div>시도: {tries.length}</div>
             <ul>
@@ -92,6 +90,6 @@ const Baseball = () => {
                 
         )
     
-}
+})
 
 export default Baseball;
