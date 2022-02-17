@@ -12,6 +12,14 @@ function getNumbers() {
 }
 
 class Baseball extends PureComponent{
+
+    /* props 정밀 동작시 constructor 사용 
+    constructor(props) {
+        super(props);
+        ex) const filterProps = this.props.filter((v)=> v)
+    }
+    */
+
     state = {
         result: "",
         value: "",
