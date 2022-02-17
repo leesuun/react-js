@@ -10,15 +10,20 @@ rendering이 필요하지 않은 경우 rendering을 방지해 성능을 최적�
 
 ## solution 1)
 
+```javascript
 function shouldComponentUpdate() { }
 shouldComponentUpdate(nextProps, nextState, nextContext){}
-shouldComponentUpdate의 nextProps를 사용해 렌더링을 막아준다.
+//shouldComponentUpdate의 nextProps를 사용해 렌더링을 막아준다.
+```
 
 해당 리턴이 참인 경우 렌더링 실행
 세세한 설정 가능
+
+```javascript
 shouldComponentUpdate(nextProps){
-return this.props.message !== nextProps.message
+    return this.props.message !== nextProps.message
 }
+```
 
 ## solution 2)
 
