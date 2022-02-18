@@ -2,11 +2,11 @@ const path = require("path");
 const RefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
 
 module.exports = {
-    name: "Number-baseball",
+    name: "responseCheck-setting",
     mode: "development",
     devtool: "eval",
     resolve: {
-        extensions: [".js", ".jsx"],
+        extensions: [".js", ".jsx", ".ts", ".tsx"],
     },
 
     module: {
@@ -17,10 +17,7 @@ module.exports = {
                 use: {
                     loader: "babel-loader",
                     options: {
-                        presets: [
-                            ["@babel/preset-env", { debug: true }],
-                            "@babel/preset-react",
-                        ],
+                        presets: [["@babel/preset-env"], "@babel/preset-react"],
                         plugins: ["react-refresh/babel"],
                     },
                 },
@@ -39,7 +36,9 @@ module.exports = {
     },
     devServer: {
         devMiddleware: { publicPath: "/dist" },
-        static: { directory: path.resolve(__dirname) },
+        static: {
+            directory: path.resolve(__dirname),
+        },
         hot: true,
     },
 };
