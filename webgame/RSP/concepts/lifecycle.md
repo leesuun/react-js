@@ -20,6 +20,12 @@
 
 ## hooks 라이프 사이클
 
+hooks의 useEffect()는 class의 componentDidMount, componentWillUnMount, componentDidUpdate 역할을
+대신하지만 1대1로 대응하지는 않는다.
+
+useEffect(함수, 클로저 문제 해결)
+두번째 인자의 목록에 있는 값이 변경될 경우 활성화
+
 ## 비동기 작업 처리
 
 완료되지 않은 비동기 처리는 componentWillUnMount함수에서 처리해줘야 한다.
