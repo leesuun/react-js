@@ -14,10 +14,7 @@ class ResponseCheck extends Component{
     startTime;
     endTime;
 
-    // shouldComponentUpdate(nextProps){
-    //     return this.props.result !== nextProps.result
-    // }
-
+    
     onClickScreen = () => {
         const { state, message, result } = this.state;
         
