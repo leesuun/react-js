@@ -1,0 +1,26 @@
+{
+  "name": "lotto",
+  "version": "1.0.0",
+  "description": "로또 추첨기",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack serve --env=development"
+  },
+  "author": "lee",
+  "license": "MIT",
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.17.5",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/preset-react": "^7.16.7",
+    "@pmmmwh/react-refresh-webpack-plugin": "^0.5.4",
+    "babel-loader": "^8.2.3",
+    "react-refresh": "^0.11.0",
+    "webpack": "^5.69.1",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.7.4"
+  }
+}
