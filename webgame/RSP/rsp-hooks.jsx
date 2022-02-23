@@ -29,7 +29,7 @@ const RSP = memo(() => {
     const [result, setResult] = useState("");
     const [score, setScore] = useState(0);
     const interval = useRef();
-    const flag = useRef();
+    let flag = useRef(true);
 
     useEffect(() => {
         interval.current = setInterval(changeHand, 100);
@@ -51,8 +51,8 @@ const RSP = memo(() => {
     };
     
     const onClickBtn = (choice) => (event) => {
-        if (!flag) return;
-        clearInterval(interval);
+        
+        clearInterval(interval.current);
         const myScore = scores[choice];
         const cpuScore = scores[computerChoice(imgCoord)];
         const diff = myScore - cpuScore;
@@ -65,10 +65,10 @@ const RSP = memo(() => {
             setResult("졌습니다!");
             setScore((prevScore) => { return prevScore - 1 })
         }
-        flag = false;
+        
         setTimeout(() => {
-            interval = setInterval(changeHand, 100);
-            flag = true;
+            interval.current = setInterval(changeHand, 100);
+            
         }, 1000);
     };
 

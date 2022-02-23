@@ -22,7 +22,6 @@ const Lotto = () => {
     const [winBalls, setWinBalls] = useState([]);
     const [bonus, setBonus] = useState(null);
     const [redo, setRedo] = useState(false);
-
     const timeouts = useRef([]);
 
     useEffect(() => {
@@ -35,7 +34,11 @@ const Lotto = () => {
         // input이 빈배열이면 componentDidMount와 같다.
         // 배열에 요소가 있으면 componentDidMount와 componentDidUpdate 둘 다 수행
         // winBalls.length === 0 못씀 (componentDidMount와 componentDidUpdate 둘 다 수행하므로)
-    } , [timeouts.current])
+    }, [timeouts.current])
+    
+    useEffect(() => {
+        console.log("로또숫자를 생성합니다.")
+    },[winNumbers])
 
 
     const runTimeouts = () => {
@@ -45,7 +48,6 @@ const Lotto = () => {
             timeouts.current[i] = setTimeout(() => {
                 setWinBalls((prevWinBalls) => {
                     return [...prevWinBalls, winNumbers[i]]
-                    
                 })
             },
             (i+1)* 1000 )
@@ -81,7 +83,6 @@ const Lotto = () => {
             {redo && <button onClick={onClickRedo}>한 번 더!</button>}
         </>
     );
-    
 }
 
 export default Lotto;

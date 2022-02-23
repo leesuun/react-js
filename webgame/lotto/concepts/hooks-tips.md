@@ -42,3 +42,21 @@ if (true) {
 ```
 
 -   hooks는 최상위로 빼서 실행순서가 항상 같게 만드는 것이 좋다.
+
+## hooks에서 componentDidUpdate에서만 작업을 수행하려는 경우
+
+hooks의 useEffect는 기본적으로 componentDidMount를 실행하므로 flag를 세워
+componentDidUpdate에서 동작을 수행하도록 만든다.
+
+```javascript
+function excuteUpdateMount() {
+    const mounted = useRef(false);
+    useEffect(() => {
+        if (!mounted.current) {
+            mounted.current = true;
+        } else {
+            // 동작 수행
+        }
+    }, []);
+}
+```

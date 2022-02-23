@@ -17,12 +17,18 @@ const scores = {
 };
 
 const computerChoice = (imgCoord) => {
-  return Object.entries(rspCoords).find(function(v) {
+  return Object.entries(rspCoords).find((v)=> {
     return v[1] === imgCoord;
   })[0];
 };
 
 class RSP extends Component {
+  constructor(props) {
+    (() => {
+      console.log("constructor");
+    })();
+    super(props)
+  }
   state = {
     result: '',
     imgCoord: rspCoords.바위,
@@ -33,11 +39,17 @@ class RSP extends Component {
     flag = true;
 
   componentDidMount() { // 컴포넌트가 첫 렌더링된 후, 여기에 비동기 요청을 많이 해요
+    console.log("componentDidMount")
     this.interval = setInterval(this.changeHand, 100);
   }
 
   componentWillUnmount() { // 컴포넌트가 제거되기 직전, 비동기 요청 정리를 많이 해요
+    console.log("componentWillUnmount")
     clearInterval(this.interval);
+  }
+
+  conponentDidUpdate() {
+    console.log("conponentDidUpdate")
   }
 
   changeHand = () => {
@@ -91,6 +103,7 @@ class RSP extends Component {
   };
 
   render() {
+    console.log("render");
     const { result, score, imgCoord } = this.state;
     return (
       <>
