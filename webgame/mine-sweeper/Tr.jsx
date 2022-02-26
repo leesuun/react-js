@@ -1,16 +1,17 @@
-import React, { useContext } from "react";
-import { TableContext } from "./mine-sweeper";
-import Td from "./Td"
+import React, { useContext, memo } from 'react';
+import Td from './Td';
+import { TableContext } from './mine-sweeper';
 
+const Tr = memo(({ rowIndex }) => {
+  const { tableData } = useContext(TableContext);
 
-const Tr = ({rowIdx}) => {
-    const { tableData } = useContext(TableContext);
-    return (
-        <tr>
-            {tableData[0] && Array(tableData[0].length).fill().map((td, i) =>
-                <Td key={i} cellIdx={i} rowIdx={rowIdx} />)}
-        </tr>
-    )
-}
+  return (
+    <tr>
+      {tableData[0] && Array(tableData[0].length).fill().map((td, i) =>
+        <Td rowIndex={rowIndex} cellIndex={i} />
+      )}
+    </tr>
+  )
+});
 
-export default Tr
+export default Tr;
