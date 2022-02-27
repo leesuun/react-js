@@ -57,7 +57,6 @@ const plantMine = (row, cell, mine) => {
     data[ver][hor] = CODE.MINE;
   }
 
-  
   return data;
 };
 
