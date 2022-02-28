@@ -25,7 +25,7 @@ const computerChoice = (imgCoord) => {
 class RSP extends Component {
   constructor(props) {
     (() => {
-      console.log("constructor");
+      // console.log("constructor");
     })();
     super(props)
   }
@@ -39,17 +39,17 @@ class RSP extends Component {
     flag = true;
 
   componentDidMount() { // 컴포넌트가 첫 렌더링된 후, 여기에 비동기 요청을 많이 해요
-    console.log("componentDidMount")
+    // console.log("componentDidMount")
     this.interval = setInterval(this.changeHand, 100);
   }
 
   componentWillUnmount() { // 컴포넌트가 제거되기 직전, 비동기 요청 정리를 많이 해요
-    console.log("componentWillUnmount")
+    // console.log("componentWillUnmount")
     clearInterval(this.interval);
   }
 
   conponentDidUpdate() {
-    console.log("conponentDidUpdate")
+    // console.log("conponentDidUpdate")
   }
 
   changeHand = () => {
@@ -103,7 +103,7 @@ class RSP extends Component {
   };
 
   render() {
-    console.log("render");
+    // console.log("render");
     const { result, score, imgCoord } = this.state;
     return (
       <>

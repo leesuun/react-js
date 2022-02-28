@@ -70,7 +70,7 @@ class Baseball extends PureComponent{
                     }
                 }
                 this.setState(prevState => {
-                    console.log(prevState)
+                    // console.log(prevState)
                     return {
                         tries: [...prevState.tries, { try: value, result: ` ${strike} 스트라이크 ${ball} 볼` }],
                         value: ""

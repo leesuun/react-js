@@ -3,7 +3,7 @@ import Ball from "./Ball"
 
 
 function getWinNumbers() {
-    console.log("getWinNumbers")
+    // console.log("getWinNumbers")
     const candidate = Array(45).fill().map((v, idx) => idx + 1);
     const shuffle = [];
     while (candidate.length > 0) {
@@ -26,12 +26,12 @@ class Lotto extends Component{
     timeouts = [];
 
     componentDidMount() {
-        console.log("componentDidMount")
+        // console.log("componentDidMount")
         this.runTimeouts();
     }
 
     componentWillUnmount() {
-        console.log("componentWillUnmount")
+        // console.log("componentWillUnmount")
         this.timeouts.forEach((v)=> clearInterval(v))
     }
 
@@ -43,7 +43,7 @@ class Lotto extends Component{
 
     runTimeouts = () => {
         const { winNumbers } = this.state;
-        console.log(winNumbers)
+        // console.log(winNumbers)
         for (let i = 0; i < winNumbers.length-1; i++){
             this.timeouts[i] = setTimeout(() => { 
                 this.setState((prevState) => {
