@@ -10,7 +10,7 @@ const Games = () => {
         &nbsp;
         <Link to="/game/rock-scissors-paper">가위바위보</Link>
         &nbsp;
-        <Link to="/game/lotto-generator">로또생성기</Link>
+        {/* <Link to="/game/lotto-generator">로또생성기</Link> */}
         &nbsp;
         <Link to="/game/index">게임 매쳐</Link>
       </div>
