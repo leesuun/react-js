@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+        <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+        <script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+        <title>counter-react</title>
+    </head>
+    <body>
+        <div id="root"></div>
+
+        <script type="text/babel">
+            class Counter extends React.Component {
+                state = {
+                    counter: 0,
+                };
+
+                onClickBtn = () => {
+                    this.setState({
+                        counter: ++this.state.counter,
+                    });
+                };
+
+                render() {
+                    return (
+                        <React.Fragment>
+                            <div>카운터 : {this.state.counter}</div>
+                            <button onClick={this.onClickBtn}>클릭</button>
+                        </React.Fragment>
+                    );
+                }
+            }
+            ReactDOM.render(<Counter />, document.querySelector("#root"));
+        </script>
+    </body>
+</html>

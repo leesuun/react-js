@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>counter</title>
+    </head>
+    <body>
+        <div id="counter"></div>
+        <button>클릭</button>
+        <script>
+            const counter = document.querySelector("#counter");
+            const button = document.querySelector("button");
+            let count = 0;
+
+            const onClickButton = () => {
+                counter.innerText = ++count;
+            };
+
+            button.addEventListener("click", onClickButton);
+        </script>
+    </body>
+</html>
