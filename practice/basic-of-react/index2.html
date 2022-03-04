@@ -2,7 +2,9 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
+        <!-- react-js 는 interactive한 ui를 제공하기 위한 라이브러리 -->
         <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+        <!-- react-dom의 역할은 react element를 html에 둘 수있도록 만함 -->
         <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
         <script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
         <title>counter-react</title>
@@ -17,11 +19,13 @@
                 };
 
                 onClickBtn = () => {
+                    console.log("hi");
                     this.setState({
                         counter: ++this.state.counter,
                     });
                 };
 
+                // render의 의미는 React element를 가지고 HTML로 만들어 배치한다는 의미
                 render() {
                     return (
                         <React.Fragment>
@@ -31,7 +35,14 @@
                     );
                 }
             }
-            ReactDOM.render(<Counter />, document.querySelector("#root"));
+            ReactDOM.render(
+                <div>
+                    <Counter />
+                    <Counter />
+                    <Counter />
+                </div>,
+                document.querySelector("#root")
+            );
         </script>
     </body>
 </html>

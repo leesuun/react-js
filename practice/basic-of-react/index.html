@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>counter</title>
+    </head>
+    <body>
+        <div>
+            <div id="counter1"></div>
+            <button id="button1">클릭</button>
+        </div>
+        <div>
+            <div id="counter2"></div>
+            <button id="button2">클릭</button>
+        </div>
+        <div>
+            <div id="counter3"></div>
+            <button id="button3">클릭</button>
+        </div>
+        <script>
+            const counters = [];
+            const buttons = [];
+            const counts = [];
+
+            for (let i = 1; i <= 3; i++) {
+                counters.push(document.querySelector(`${"#counter" + i} `));
+                buttons.push(document.querySelector(`${"#button" + i} `));
+                counts.push(0);
+            }
+
+            buttons.forEach((btn, i) => {
+                btn.addEventListener("click", () => {
+                    counters[i].innerText = ++counts[i];
+                });
+            });
+        </script>
+    </body>
+</html>

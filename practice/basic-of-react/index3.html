@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <!-- react-js 는 interactive한 ui를 제공하기 위한 라이브러리 -->
+        <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+        <!-- react-dom의 역할은 react element를 html에 둘 수있도록 만함 -->
+        <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+        <script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+        <title>counter-react</title>
+    </head>
+    <body>
+        <div id="root"></div>
+
+        <script type="text/babel">
+            function App() {
+                const [amount, setAmount] = React.useState("");
+                const [inverted, setInverted] = React.useState(false);
+
+                const onChangeInput = (e) => {
+                    const { value } = e.target;
+                    setAmount(value);
+                };
+
+                const reset = () => setAmount(0);
+                const onFlip = () => {
+                    reset();
+                    setInverted((curr) => !curr);
+                };
+
+                return (
+                    <div>
+                        <h2>Super Converter </h2>
+                        <div>
+                            <label htmlFor="amount">Minutes</label>
+                            <input
+                                disabled={inverted}
+                                value={inverted === false ? amount : amount * 60}
+                                onChange={onChangeInput}
+                                id="amount"
+                                type="number"
+                                placeholder="Minutes"
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="hours">Hours</label>
+                            <input
+                                disabled={!inverted}
+                                value={
+                                    inverted === true ? amount : Math.round(amount / 60)
+                                }
+                                onChange={onChangeInput}
+                                id="hours"
+                                type="number"
+                                placeholder="Hours"
+                            />
+                        </div>
+                        <button onClick={reset}>reset</button>
+                        <button onClick={onFlip}>
+                            {!inverted ? "Minutes -> Hour" : "Hour -> Minutes"}
+                        </button>
+                    </div>
+                );
+            }
+
+            ReactDOM.render(
+                <div>
+                    <App />
+                </div>,
+                document.querySelector("#root")
+            );
+        </script>
+    </body>
+</html>
