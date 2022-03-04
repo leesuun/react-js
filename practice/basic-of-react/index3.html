@@ -13,7 +13,7 @@
         <div id="root"></div>
 
         <script type="text/babel">
-            function App() {
+            function MinutesToHours() {
                 const [amount, setAmount] = React.useState("");
                 const [inverted, setInverted] = React.useState(false);
 
@@ -30,14 +30,13 @@
 
                 return (
                     <div>
-                        <h2>Super Converter </h2>
                         <div>
-                            <label htmlFor="amount">Minutes</label>
+                            <label htmlFor="minutes">Minutes</label>
                             <input
                                 disabled={inverted}
                                 value={inverted === false ? amount : amount * 60}
                                 onChange={onChangeInput}
-                                id="amount"
+                                id="minutes"
                                 type="number"
                                 placeholder="Minutes"
                             />
@@ -59,6 +58,33 @@
                         <button onClick={onFlip}>
                             {!inverted ? "Minutes -> Hour" : "Hour -> Minutes"}
                         </button>
+                    </div>
+                );
+            }
+
+            function KmToMiles() {
+                return <div>KmToMiles</div>;
+            }
+
+            function App() {
+                const [option, setOption] = React.useState("select");
+
+                const onSelect = (e) => {
+                    const { value } = e.target;
+                    setOption(value);
+                };
+
+                return (
+                    <div>
+                        <h1>Super Converter </h1>
+                        <select style={{ marginBottom: "1rem" }} onChange={onSelect}>
+                            <option value="select">select</option>
+                            <option value="0">MinutesToHours</option>
+                            <option value="1">KmToMiles</option>
+                        </select>
+                        {option === "select" ? <div>Select Converter</div> : null}
+                        {option === "0" ? <MinutesToHours /> : null}
+                        {option === "1" ? <KmToMiles /> : null}
                     </div>
                 );
             }

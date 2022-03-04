@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <!-- react-js 는 interactive한 ui를 제공하기 위한 라이브러리 -->
+        <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+        <!-- react-dom의 역할은 react element를 html에 둘 수있도록 만함 -->
+        <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+        <!-- props type check -->
+        <script src="https://unpkg.com/prop-types@15.7.2/prop-types.js"></script>
+        <script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+        <title>counter-react</title>
+    </head>
+    <body>
+        <div id="root"></div>
+
+        <script type="text/babel">
+            const Btn = React.memo(({ text, onClickBtn, big }) => {
+                console.log(text, "rendered");
+                return (
+                    <button
+                        onClick={onClickBtn}
+                        style={{
+                            backgroundColor: "tomato",
+                            color: "white",
+                            padding: "10px 10px",
+                            border: "none",
+                            borderRadius: "10px",
+                            fontSize: big ? "20px" : "10px",
+                        }}
+                    >
+                        {text}
+                    </button>
+                );
+            });
+            Btn.propTypes = {
+                text: PropTypes.string.isRequired,
+                onClickBtn: PropTypes.func,
+                big: PropTypes.bool,
+            };
+
+            const App = React.memo(() => {
+                const [value, setValue] = React.useState("btn1");
+                const onChangeValue = () => setValue("convert btn");
+                console.log("App render");
+
+                return (
+                    <div>
+                        <Btn big={true} text={value} onClickBtn={onChangeValue} />
+                        <Btn big={false} text="btn2" />
+                    </div>
+                );
+            });
+
+            ReactDOM.render(
+                <div>
+                    <App />
+                </div>,
+                document.querySelector("#root")
+            );
+        </script>
+    </body>
+</html>
