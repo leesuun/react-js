@@ -1,38 +1,58 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function App() {
-    const [toDo, setToDo] = useState("");
-    const [toDos, setToDos] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [coins, setCoins] = useState([]);
+    const [ownCoins, setOwnCoins] = useState(0);
+    const [select, setSelect] = useState(0);
+    const [price, setPrice] = useState();
 
-    const onChange = (e) => setToDo(e.target.value);
+    // console.log("rendering");
+    useEffect(() => {
+        fetch("https://api.coinpaprika.com/v1/tickers?limit=1000")
+            .then((response) => response.json())
+            .then((json) => {
+                setCoins(json);
+                setLoading(false);
+            });
+    }, []);
+
+    const onChange = (e) => setPrice(Number(e.target.value));
     const onSubmit = (e) => {
         e.preventDefault();
-        if (toDo === "") {
+        if (!price || isNaN(price)) {
             return;
         }
-        setToDo("");
-        setToDos((curr) => [...curr, toDo]);
+
+        setOwnCoins(price / coins[Number(select - 1)].quotes.USD.price);
     };
-    console.log(toDos);
+    const onChangeSelect = (e) => setSelect(e.target.value.split(".", 1)[0]);
 
     return (
         <div>
-            <h1>ToDo-list({toDos.length})</h1>
+            <h1>The Coins!! ({coins.length})</h1>
+            {loading ? (
+                <strong>Loading...</strong>
+            ) : (
+                <select onChange={onChangeSelect}>
+                    {coins.map((coin, idx) => (
+                        <option key={coin.id}>
+                            {idx + 1}.{coin.name}({coin.symbol}) :{" "}
+                            {coin.quotes.USD.price.toFixed(2)} USD
+                        </option>
+                    ))}
+                </select>
+            )}
+            <hr />
             <form onSubmit={onSubmit}>
                 <input
-                    value={toDo}
                     type="text"
                     onChange={onChange}
-                    placeholder="Write a todo.."
+                    placeholder="write your own USD"
                 />
-                <button>제출</button>
+                <button>변환</button>
             </form>
-            <hr />
-            <ul>
-                {toDos.map((item) => {
-                    return <li key={item}>{item}</li>;
-                })}
-            </ul>
+            <div>보유코인: {ownCoins}개</div>
         </div>
     );
 }
